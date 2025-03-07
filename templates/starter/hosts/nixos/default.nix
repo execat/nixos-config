@@ -108,7 +108,7 @@ let user = "%USER%";
   # Video support
   hardware = {
     graphics.enable = true;
-    pulseaudio.enable = true;
+    # pulseaudio.enable = true;
     # hardware.nvidia.modesetting.enable = true;
 
     # Enable Xbox support
