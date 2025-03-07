@@ -35,8 +35,7 @@ let user = "%USER%";
   networking = {
     hostName = "%HOST%"; # Define your hostname.
     hostId = "42eb7fb4"; # head -c4 /dev/urandom | od -A none -t x4
-    useDHCP = false;
-    interfaces."%INTERFACE%".useDHCP = true;
+    networkmanager.enable = true;
   };
 
   nix = {
@@ -139,6 +138,7 @@ let user = "%USER%";
       extraGroups = [
         "wheel" # Enable ‘sudo’ for the user.
         "docker"
+        "networkmanager"
       ];
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = keys;
