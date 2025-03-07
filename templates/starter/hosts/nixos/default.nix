@@ -20,7 +20,7 @@ let user = "%USER%";
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
     # Uncomment for AMD GPU
     # initrd.kernelModules = [ "amdgpu" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "uinput" ];
   };
 
@@ -70,6 +70,8 @@ let user = "%USER%";
       wayland.enable = true;
     };
 
+    desktopManager.plasma6.enable = true;
+
     xserver = {
       enable = true;
 
@@ -115,7 +117,6 @@ let user = "%USER%";
     # Crypto wallet support
     ledger.enable = true;
   };
-
 
   # Add docker daemon
   virtualisation = {
