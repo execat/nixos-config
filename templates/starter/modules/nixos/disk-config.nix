@@ -3,29 +3,68 @@ _: {
   # Other examples found here: https://github.com/nix-community/disko/tree/master/example
   disko.devices = {
     disk = {
-      vdb = {
-        device = "/dev/%DISK%";
+      root = {
         type = "disk";
+        device = "/dev/%DISK%";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
               type = "EF00";
-              size = "100M";
+              size = "1G";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [ "nofail" ];
               };
             };
-            root = {
+            zfs = {
+              size = "-5G";
+              content = {
+                type = "zfs";
+                pool = "zroot";
+              };
+            };
+            encryptedSwap = {
               size = "100%";
               content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
+                type = "swap";
+                randomEncryption = true;
+                priority = 100; # prefer to encrypt as long as we have space for it
               };
             };
+          };
+        };
+      };
+    };
+    zpool = {
+      zroot = {
+        type = "zpool";
+        rootFsOptions = {
+          mountpoint = "none";
+          compression = "zstd";
+          acltype = "posixacl";
+          xattr = "sa";
+          "com.sun:auto-snapshot" = "true";
+        };
+        options.ashift = "12";
+        datasets = {
+          "root" = {
+            type = "zfs_fs";
+            options = {
+              encryption = "aes-256-gcm";
+              keyformat = "passphrase";
+              #keylocation = "file:///tmp/secret.key";
+              keylocation = "prompt";
+            };
+            mountpoint = "/";
+
+          };
+          "root/nix" = {
+            type = "zfs_fs";
+            options.mountpoint = "/nix";
+            mountpoint = "/nix";
           };
         };
       };

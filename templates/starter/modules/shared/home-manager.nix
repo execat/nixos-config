@@ -66,7 +66,7 @@ let name = "%NAME%";
       enable = true;
     };
     extraConfig = {
-      init.defaultBranch = "main";
+      init.defaultBranch = "dev";
       core = {
 	    editor = "vim";
         autocrlf = "input";
