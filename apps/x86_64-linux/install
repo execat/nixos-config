@@ -11,6 +11,7 @@ check_installer() {
 }
 
 cleanup() {
+  echo "Nothing to cleanup"
 }
 
 download_config() {
