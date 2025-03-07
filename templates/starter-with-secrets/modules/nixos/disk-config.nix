@@ -20,18 +20,36 @@ _: {
               };
             };
             zfs = {
-              size = "-5G";
+              size = "200G";
               content = {
                 type = "zfs";
                 pool = "zroot";
               };
             };
+            # This is the NixOS swap
             encryptedSwap = {
-              size = "100%";
+              size = "10G";
               content = {
                 type = "swap";
                 randomEncryption = true;
                 priority = 100; # prefer to encrypt as long as we have space for it
+              };
+            };
+            # This is the Arch swap
+            ext4Swap = {
+              size = "10G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+                priority = 100; # prefer to encrypt as long as we have space for it
+              };
+            };
+            ext4Root = {
+              size = "100%";
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
               };
             };
           };
