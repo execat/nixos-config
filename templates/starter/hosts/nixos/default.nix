@@ -73,12 +73,13 @@ let user = "%USER%";
 
     desktopManager = {
       plasma6.enable = true;
-      gnome.enable = true;
-      xfce.enable = true;
     };
 
     xserver = {
       enable = true;
+
+      desktopManager.gnome.enable = true;
+      desktopManager.xfce.enable = true;
 
       xkb = {
         layout = "us";
