@@ -72,7 +72,7 @@ let user = "%USER%";
       wayland.enable = true;
     };
 
-    desktopManager {
+    desktopManager = {
       plasma6.enable = true;
       gnome.enable = true;
       xfce.enable = true;
