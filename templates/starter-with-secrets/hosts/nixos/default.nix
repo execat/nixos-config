@@ -36,6 +36,7 @@ let user = "%USER%";
     hostName = "%HOST%"; # Define your hostname.
     hostId = "42eb7fb4"; # head -c4 /dev/urandom | od -A none -t x4
     networkmanager.enable = true;
+    wireless.enable = true;
   };
 
   nix = {
@@ -65,12 +66,17 @@ let user = "%USER%";
   };
 
   services = {
+    displayManager.defaultSession = "xfce";
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
     };
 
-    desktopManager.plasma6.enable = true;
+    desktopManager {
+      plasma6.enable = true;
+      gnome.enable = true;
+      xfce.enable = true;
+    };
 
     xserver = {
       enable = true;
