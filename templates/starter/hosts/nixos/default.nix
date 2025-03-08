@@ -60,6 +60,9 @@ let user = "%USER%";
     # Needed for anything GTK related
     dconf.enable = true;
 
+    # Needed to disambiguate between Seahorse and Ksshaskpass
+    ssh.askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
+
     # My shell
     zsh.enable = true;
   };
