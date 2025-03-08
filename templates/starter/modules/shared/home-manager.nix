@@ -253,6 +253,7 @@ let name = "%NAME%";
 
   ssh = {
     enable = true;
+    askPassword = lib.mkForce "ksshaskpass";
     includes = [
       (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
         "/home/${user}/.ssh/config_external"
