@@ -55,7 +55,7 @@ let user = "%USER%";
 
   # Manages keys and such
   programs = {
-    gnupg.agent.enable = true;
+    # gnupg.agent.enable = true;
 
     # Needed for anything GTK related
     dconf.enable = true;
