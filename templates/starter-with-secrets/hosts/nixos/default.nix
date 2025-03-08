@@ -36,7 +36,7 @@ let user = "%USER%";
     hostName = "%HOST%"; # Define your hostname.
     hostId = "42eb7fb4"; # head -c4 /dev/urandom | od -A none -t x4
     networkmanager.enable = true;
-    wireless.enable = true;
+    # wireless.enable = true;
   };
 
   nix = {
@@ -56,7 +56,7 @@ let user = "%USER%";
 
   # Manages keys and such
   programs = {
-    gnupg.agent.enable = true;
+    # gnupg.agent.enable = true;
 
     # Needed for anything GTK related
     dconf.enable = true;
@@ -72,14 +72,15 @@ let user = "%USER%";
       wayland.enable = true;
     };
 
-    desktopManager {
+    desktopManager = {
       plasma6.enable = true;
-      gnome.enable = true;
-      xfce.enable = true;
     };
 
     xserver = {
       enable = true;
+
+      desktopManager.gnome.enable = true;
+      desktopManager.xfce.enable = true;
 
       xkb = {
         layout = "us";
