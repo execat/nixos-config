@@ -6,7 +6,7 @@ shared-packages ++ [
 
   # Security and authentication
   yubikey-agent
-  keepassxc
+  bitwarden-desktop
 
   # App and package management
   appimage-run
@@ -28,8 +28,6 @@ shared-packages ++ [
 
   # Testing and development tools
   direnv
-  rofi
-  rofi-calc
   postgresql
   libtool # for Emacs vterm
 
@@ -48,16 +46,15 @@ shared-packages ++ [
 
   # File and system utilities
   inotify-tools # inotifywait, inotifywatch - For file system events
-  i3lock-fancy-rapid
   libnotify
   pcmanfm # File browser
   sqlite
   xdg-utils
 
   # Other utilities
-  yad # yad-calendar is used with polybar
   xdotool
   google-chrome
+  firefox
 
   # PDF viewer
   zathura
